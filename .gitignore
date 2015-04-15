@@ -1,0 +1,5 @@
+.idea/
+*.iml
+*.yml
+*.pyc
+*.pyo

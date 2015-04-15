@@ -1,0 +1,13 @@
+mongo:
+  db: cms
+
+  # If you're only using a local database with no auth and the default port.
+  default: true
+
+  # If you need to configure the defaults, though, you can do this.
+  host: localhost
+  port: 27017
+  authentication:
+    use: False
+    username: None
+    password: None

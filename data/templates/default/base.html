@@ -1,0 +1,52 @@
+<%page args="title='???', page='???', pages={}"/>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%block name="title"/></title>
+
+    <meta name="description" content="<%block name="description"/>" />
+    <meta name="keywords" content="<%block name="keywords"/>" />
+    <meta name="revisit-after" content="7 days" />
+    <meta name="robots" content="index,follow" />
+
+    ## Semantic-UI CSS and JS
+
+    <link href="https://cdnjs.buttflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.js" type="application/javascript"></script>
+
+    <%block name="header"/>
+
+% if extra_css is not UNDEFINED:
+    ## Route-specific CSS
+        % for url in extra_css:
+    <link href="${url}" rel="stylesheet" />
+        % endfor
+% endif
+
+% if extra_js is not UNDEFINED:
+    ## Route-specific JS
+        % for url in extra_js:
+    <script src="${url}" type="application/javascript"></script>
+        % endfor
+% endif
+</head>
+<body>
+    <%include file="navigation.html" args="page=page, pages=pages"/>
+
+    ${self.body()}
+
+    ## JS to tell people to just upgrade you old browser already, dammit!
+    <script type="text/javascript">
+        var $buoop = {};
+        $buoop.ol = window.onload;
+        window.onload=function(){
+            try {if ($buoop.ol) $buoop.ol();} catch (e) {}
+            var e = document.createElement("script");
+            e.setAttribute("type", "text/javascript");
+            e.setAttribute("src", "//browser-update.org/update.js");
+            document.body.appendChild(e);
+        }
+    </script>
+</body>
+</html>
